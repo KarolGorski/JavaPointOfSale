@@ -1,38 +1,48 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 
 package Service;
 
 import LCD.LCDservice;
-import Scanner.ScannerService;
 import Reader.ReadingService;
-import java.awt.event.KeyEvent;
+import Database.DatabaseService;
+
 /**
  *
  * @author Karol
  */
-public class ServiceSetup {
+public class ServiceSetup{
     private LCDservice LCD;
-    private ScannerService scanner;
-    
+    private ReadingService reader;
+    private DatabaseService database;
+
+   
+    private RunningServiceDataAndMethods Run;
+
     public ServiceSetup()
     {
-        LCD = new LCDservice();
-        scanner = new ScannerService();
-    }
-    
-    
-    
-    public void ESCPressed(KeyEvent e)
-    {
-     int key = e.getKeyCode();   
-     
-     if (key == KeyEvent.VK_ESCAPE) {
+        database
+                =new DatabaseService();
+        LCD 
+                = new LCDservice(this);
+        Run
+                =new RunningServiceDataAndMethods(this);
+        reader 
+                = new ReadingService(this);
         
-        }
+
     }
+
+    public void timeToStop(){
+        new ServiceFinish(this);
+    }
+    
+      public LCDservice getLCD() {
+        return LCD;
+    }
+      public DatabaseService getDatabase() {
+        return database;
+    }
+    public RunningServiceDataAndMethods getRun() {
+        return Run;
+    }
+   
 }
