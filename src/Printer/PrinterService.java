@@ -39,7 +39,7 @@ public class PrinterService {
     
     printer
             .getBill()
-            .append("SUMA:"
+            .append("TOTAL:"
                     +" "+price
                     +"\n");
     }
